@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách giao dịch</title>
+</head>
+<body>
+<h1>Danh sách giao dịch</h1>
+
+<form action="/list" method="get">
+    <label for="loaiBatDongSans">Loại bất động sản:</label>
+    <select id="loaiBatDongSans" name="loaiBatDongSans" th:field="*{loaiBatDongSan}">
+        <option value="">Tất cả loại bất động sản</option>
+        <option th:each="loai : ${loaiBatDongSan}" th:value="${loai.maLoaiBatDongSan}" th:text="${loai.tenLoaiBatDongSan}" th:selected="${loai.maLoaiBatDongSan == loaiBatDongSan}"></option>
+    </select>
+
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Mã giao dịch</th>
+        <th>Mã khách hàng</th>
+        <th>Tên khách hàng</th>
+        <th>Ngày giao dịch</th>
+        <th>Đơn giá (VND/m²)</th>
+        <th>Diện tích (m²)</th>
+        <th>Loại bất động sản</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="giaoDich : ${giaoDich}">
+        <td th:text="${giaoDich.maGiaoDich}"></td>
+        <td th:text="${giaoDich.khachHang.maKhachHang}"></td>
+        <td th:text="${giaoDich.khachHang.tenKhachHang}"></td>
+        <td th:text="${#dates.format(giaoDich.ngayGiaoDich, 'dd/MM/yyyy')}"></td>
+        <td th:text="${giaoDich.donGia}"></td>
+        <td th:text="${giaoDich.dienTich}"></td>
+        <td th:text="${giaoDich.batDongsan.tenLoaiBatDongSan}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
