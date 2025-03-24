@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới giao dịch</title>
+</head>
+<body>
+<h1>Thêm mới giao dịch</h1>
+<form th:action="@{/add}" th:object="${giaoDich}" method="post">
+    <label for="maGiaoDich">Mã giao dịch:</label>
+    <input type="text" id="maGiaoDich" th:field="*{maGiaoDich}" disabled/><br />
+
+    <label for="maKhachHang">Khách hàng:</label>
+    <select id="maKhachHang" th:field="*{khachHang.maKhachHang}">
+        <option th:each="khachHang : ${khachHangs}" th:value="${khachHang.maKhachHang}" th:text="${khachHang.tenKhachHang}"></option>
+    </select><br/>
+
+    <label for="ngayGiaoDich">Ngày giao dịch:</label>
+    <input type="date" id="ngayGiaoDich" th:field="*{ngayGiaoDich}" /><br />
+
+    <label for="donGia">Đơn giá:</label>
+    <input type="number" id="donGia" th:field="*{donGia}" /><br />
+
+    <label for="dienTich">Diện tích:</label>
+    <input type="number" id="dienTich" th:field="*{dienTich}" /><br />
+
+    <label for="maBatDongSan">Loại bất động sản:</label>
+    <select id="maBatDongSan" th:field="*{batDongsan.maLoaiBatDongSan}">
+        <option th:each="batDongSan : ${batDongSans}" th:value="${batDongSan.maLoaiBatDongSan}" th:text="${batDongSan.tenLoaiBatDongSan}"></option>
+    </select><br/>
+
+    <button type="submit">Thêm mới</button>
+</form>
+</body>
+</html>

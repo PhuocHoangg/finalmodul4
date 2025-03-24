@@ -23,7 +23,7 @@ public class GiaoDichService implements IGiaoDichService {
 
     @Override
     public void add(GiaoDich giaoDich) {
-
+        giaoDichRepository.save(giaoDich);
     }
 
     @Override
